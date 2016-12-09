@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="0" name="pytest" skips="0" tests="5" time="0.642"><testcase classname="test2.TestStringMethods" name="test_equal" time="0.000126838684082"><system-out>setupModule, restore database into initial state
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="0" name="pytest" skips="0" tests="5" time="0.775"><testcase classname="test_1.TestStringMethods" name="test_isupper" time="0.000170946121216"/><testcase classname="test_1.TestStringMethods" name="test_split" time="0.000123977661133"/><testcase classname="test_1.TestStringMethods" name="test_upper" time="0.000115871429443"/><testcase classname="test_2.TestStringMethods" name="test_equal" time="0.000167846679688"><system-out>setupModule, restore database into initial state
 Setup, preparing for testing
 tearDown, cleaning local mess
-</system-out></testcase><testcase classname="test2.TestStringMethods" name="test_integer_equal" time="0.00011420249939"><system-out>Setup, preparing for testing
+</system-out></testcase><testcase classname="test_2.TestStringMethods" name="test_integer_equal" time="0.000102043151855"><system-out>Setup, preparing for testing
 tearDown, cleaning local mess
-</system-out></testcase><testcase classname="test.TestStringMethods" name="test_isupper" time="7.41481781006e-05"/><testcase classname="test.TestStringMethods" name="test_split" time="7.60555267334e-05"/><testcase classname="test.TestStringMethods" name="test_upper" time="6.41345977783e-05"/></testsuite>
+</system-out></testcase></testsuite>

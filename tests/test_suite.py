@@ -5,8 +5,8 @@
 # not completed yet, as it is easy to run all the tests from a directory 
 #
 import unittest
-import test
-import test2
+import test_1
+import test_2
 
 def suite():
     tests = ['first', 'second']

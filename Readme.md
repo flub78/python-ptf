@@ -87,9 +87,11 @@ Or all the tests from a directory
 
 To generate junit style xml results
     
-### Using py.test
+### Using Jenkins
 
-py.test is test framework
+The project has been designed to map easily with a jenkins job. The tests directory is the test suite of the libraries provided inside the framework as long as some test examples.
+
+It uses py.test to generate the results in a format recognised by jenkins. py.test is test framework
 
 on debian based linux disttribution it can be installed with
    
