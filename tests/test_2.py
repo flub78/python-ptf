@@ -4,6 +4,11 @@
 # Another simple python test
 # to make a suite
 #
+# Scenario ID: 43
+# Given: no preconditions
+# When: executing the script
+# Then: no error should be reported
+
 import unittest
 
 def setUpModule():
