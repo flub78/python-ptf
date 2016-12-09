@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="0" name="pytest" skips="0" tests="5" time="0.372"><testcase classname="test2.TestStringMethods" name="test_equal" time="0.000288009643555"><system-out>setupModule, restore database into initial state
+Setup, preparing for testing
+tearDown, cleaning local mess
+</system-out></testcase><testcase classname="test2.TestStringMethods" name="test_integer_equal" time="7.20024108887e-05"><system-out>Setup, preparing for testing
+tearDown, cleaning local mess
+</system-out></testcase><testcase classname="test.TestStringMethods" name="test_isupper" time="6.00814819336e-05"/><testcase classname="test.TestStringMethods" name="test_split" time="0.000108003616333"/><testcase classname="test.TestStringMethods" name="test_upper" time="6.00814819336e-05"/></testsuite>
