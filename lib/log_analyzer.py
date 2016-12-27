@@ -10,12 +10,14 @@ do not support log rotation or compressing
 
 """
 import os.path
+import re
 
 class LogAnalyzer:
 
     def __init__(self, logfile):
         """ Constructor """
         self._logfile = logfile
+        self._matches = []
         if not os.path.isfile(logfile):
             raise Exception("Log file not found")
         
@@ -25,7 +27,10 @@ class LogAnalyzer:
     def lookfor(self, pattern):
         with open(self._logfile) as log:
             for line in log:
-                print line
+                if re.match(pattern, line):
+                    print line
+                else:
+                    print "no match", pattern, " : ", line
         
     
     

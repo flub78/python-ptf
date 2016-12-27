@@ -31,7 +31,7 @@ class TestLogAnalyzer(unittest.TestCase):
         la = LogAnalyzer(logfile)
         self.assertEqual(logfile, la.filename())
         
-        la.lookfor('toto')
+        la.lookfor(r'Apache')
 
 #    def tearDown(self):
 #        print "tearDown, cleaning local mess"
