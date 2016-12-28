@@ -10,6 +10,7 @@ do not support log rotation or compressing
 
 """
 import os.path
+import os
 import re
 
 class LogAnalyzer:
@@ -32,12 +33,16 @@ class LogAnalyzer:
             for line in log:
                 if regexp.search(line):
                     self._matches.append(line)
-                    print "match    ", pattern, " ", line
-                else:
-                    print "no match ", pattern, " ", line
+#                    print "match    ", pattern, " ", line
+#                else:
+#                    print "no match ", pattern, " ", line
         
     def count(self):
         """ returns the number of matches of the previous search"""
         return len(self._matches)
+    
+    def size(self):
+        """ size of the log file in bytes """
+        return os.stat(self._logfile).st_size
     
     
