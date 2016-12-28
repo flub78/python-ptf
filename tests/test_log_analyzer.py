@@ -5,6 +5,13 @@
 #
 
 import unittest
+import sys
+import os.path
+
+# by convention the lib directory is at the same level than the tests directory
+libpath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'lib'))
+sys.path.append(libpath)
+
 from log_analyzer import *
 
 # def setUpModule():
@@ -27,11 +34,13 @@ class TestLogAnalyzer(unittest.TestCase):
 
         
     def test_basic(self):
-        logfile = "/var/log/apache2/access.log.1"
+        logfile = "/var/log/apache2/access.log"
         la = LogAnalyzer(logfile)
         self.assertEqual(logfile, la.filename())
         
-        la.lookfor(r'Apache')
+        la.lookfor('Apache')
+        print la.count()
+        self.assertGreaterEqual(la.count(), 0, "Positive number of matches")
 
 #    def tearDown(self):
 #        print "tearDown, cleaning local mess"

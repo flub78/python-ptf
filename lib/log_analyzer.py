@@ -22,15 +22,22 @@ class LogAnalyzer:
             raise Exception("Log file not found")
         
     def filename(self):
+        """ geter for log filen name """
         return self._logfile
     
     def lookfor(self, pattern):
+        """ look for a pattern and fill an array of matching lines"""
+        regexp = re.compile(pattern)
         with open(self._logfile) as log:
             for line in log:
-                if re.match(pattern, line):
-                    print line
+                if regexp.search(line):
+                    self._matches.append(line)
+                    print "match    ", pattern, " ", line
                 else:
-                    print "no match", pattern, " : ", line
+                    print "no match ", pattern, " ", line
         
+    def count(self):
+        """ returns the number of matches of the previous search"""
+        return len(self._matches)
     
     
