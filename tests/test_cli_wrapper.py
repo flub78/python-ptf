@@ -13,27 +13,38 @@ libpath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'li
 sys.path.append(libpath)
 
 from cli_wrapper import *
-
-# def setUpModule():
-#    print "setupModule, restore database into initial state"
-
-# def tearDownModule():
-#    print "Cleaning global mess"
     
 class TestCliWrapper(unittest.TestCase):
 
 
-#    def setUp(self):
-#        print "Setup, preparing for testing"
-        
-                
     def test_basic(self):
         cmd = "ls -ltr"
         wrp = CliWrapper(cmd)
         self.assertEqual(cmd, wrp.cmd(), "It is possible to get the command back")
         
-#    def tearDown(self):
-#        print "tearDown, cleaning local mess"
+        result = wrp.read()
+        print "=====\n", result, "=====" 
+        self.assertNotEqual("", result, "expected result for ls\n===\n" + str(result)
+                         + "\n==="  )
+                
+    def test_interactive(self):
+        print "test interactions with ftp"
+        cmd = "ftp"
+        wrp = CliWrapper(cmd)
+        prompt = "ftp> "
+        
+        wrp.expect (prompt) # initial prompt
+        
+        res = wrp.sendline_expectprompt('help', prompt)
+        print res
+        
+        res = wrp.sendline_expectprompt('ls', prompt)
+        print  (">>>", res, "<<<")        
+        self.assertEqual("ls\r\nNot connected.\r\n", res, "ftp answer when not connected")
 
+        wrp.sendline ('quit')
+
+        print "end of test"
+      
 if __name__ == '__main__':
     unittest.main()
