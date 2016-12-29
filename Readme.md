@@ -21,7 +21,12 @@ The idea is to use a high level scripting language to describe the test scenario
   * Test must be assertion based and use one unit test library of the host scripting language (to provide assertion check routines, jenkins interface, test suite management, etc).
   * The host scripting language is python
 
+## Dependencies:
 
+Some of the framework libraries uses external python modules:
+
+    Pexpect - https://sourceforge.net/projects/pexpect/files/pexpect/
+              sudo apt-get install python-pexpect
 
 ## Components:
 
