@@ -18,6 +18,12 @@ class TestCliWrapper(unittest.TestCase):
 
 
     def test_basic(self):
+        """
+        given a wrapper initialized with ls
+        when calling cmd then expect to get the command back
+        when calling read then expect the output of ls
+        """
+  
         cmd = "ls -ltr"
         wrp = CliWrapper(cmd)
         self.assertEqual(cmd, wrp.cmd(), "It is possible to get the command back")
@@ -28,7 +34,11 @@ class TestCliWrapper(unittest.TestCase):
                          + "\n==="  )
                 
     def test_interactive(self):
-        print "test interactions with ftp"
+        """
+        given a wrapper initialized with ftp
+        when calling sendline_expectprompt
+        then expect the output of the ftp command
+        """
         cmd = "ftp"
         wrp = CliWrapper(cmd)
         prompt = "ftp> "

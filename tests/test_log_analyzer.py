@@ -23,17 +23,24 @@ from log_analyzer import *
 class TestLogAnalyzer(unittest.TestCase):
 
 
-#    def setUp(self):
-#        print "Setup, preparing for testing"
-        
         
     def test_invalid(self):
+        """
+        given a non existing log file
+        when creating a log analyzer
+        then an exception should be raised
+        """
         logfile = "/dev/null/log"
         with self.assertRaises(Exception):
             la = LogAnalyzer(logfile)
 
         
     def test_basic(self):
+        """
+        given a log file
+        when having a log analyzer
+        then queries can be done on the log file
+        """
         logfile = "access.log"
         la = LogAnalyzer(logfile)
         self.assertEqual(logfile, la.filename())
@@ -41,9 +48,6 @@ class TestLogAnalyzer(unittest.TestCase):
         la.lookfor('Apache')
         self.assertEqual(la.count(), 29, "Correct number of matches")
         self.assertEqual(la.size(), 240476, "Size of the log file")
-
-#    def tearDown(self):
-#        print "tearDown, cleaning local mess"
 
 if __name__ == '__main__':
     unittest.main()

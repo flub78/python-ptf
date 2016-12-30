@@ -15,25 +15,39 @@
 # To run the tests and generate Junit xml test results
 # py.test --junitxml results.xml test*.py
 #
-# Scenario ID: 42
-# Given: no preconditions
-# When: executing the script
-# Then: no error should be reported
 import unittest
 
 class TestStringMethods(unittest.TestCase):
 
     def test_upper(self):
-        "test string upper function"
+        """
+        test string upper function
+        given a constant string
+        when calling upper
+        then expect the string in upper case
+        """
         self.assertEqual('foo'.upper(), 'FOO')
 
     def test_isupper(self):
+        """
+        test string isupper function
+        given constant strings
+        when calling isupper
+        then expect true when the string is in upper case
+        """
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
 
     def test_split(self):
+        """
+        test string split function
+        given a constant strings containing spaces
+        expect a list of token when called with default separators
+        expect an error when called with a non string separator 
+        """
         s = 'hello world'
         self.assertEqual(s.split(), ['hello', 'world'])
+        
         # check that s.split fails when the separator is not a string
         with self.assertRaises(TypeError):
             s.split(2)
