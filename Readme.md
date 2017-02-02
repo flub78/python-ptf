@@ -108,3 +108,11 @@ to run the tests and generate an XML report usable by jenkins:
     
 (note that some investigation could still be done to find the most convenient python framework, but the idea is there, having individual tests generating Junit XML files)
 
+## Python documentation
+
+All libraries, scripts and tests are documented using pydoc.
+To browse the documentation
+
+    pydoc -p 7777
+    
+The documentation can then be accessed at http://localhost:7777
