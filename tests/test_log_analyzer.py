@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*
-#
-# Unit test for log analyzer
-#
+"""
+Unit test for log analyzer
+"""
 
 import unittest
 import sys
@@ -21,8 +21,6 @@ from log_analyzer import *
 #    print "Cleaning global mess"
     
 class TestLogAnalyzer(unittest.TestCase):
-
-
         
     def test_invalid(self):
         """

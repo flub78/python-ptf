@@ -1,20 +1,21 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*
-#
-# Simple python test
-#
-# to run it
-# python test.py
-#
-# to run all the tests in a directory
-# python -m unittest discover <directory>
-#
-# or if you are in the directory
-# python -m unittest discover
-#
-# To run the tests and generate Junit xml test results
-# py.test --junitxml results.xml test*.py
-#
+
+""" Simple python test
+
+to run it
+python test.py
+
+to run all the tests in a directory
+python -m unittest discover <directory>
+
+or if you are in the directory
+python -m unittest discover
+
+To run the tests and generate Junit xml test results
+py.test --junitxml results.xml test*.py
+
+"""
 import unittest
 
 class TestStringMethods(unittest.TestCase):

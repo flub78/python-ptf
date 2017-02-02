@@ -28,6 +28,11 @@ class TestTelnetClient(unittest.TestCase):
         
                 
     def test_basic(self):
+        """
+        given a telnet client
+        when not connected
+        then connection should not return an error
+        """
         cli = TelnetClient('localhost', 7)
         self.assertEqual(7, cli.connect(), "Connect")
         

@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*
-#
-# Unit test for the CLI wrapper
-#
+"""
+Unit test for the CLI wrapper
+"""
 
 import unittest
 import sys
