@@ -17,6 +17,8 @@ from datetime import datetime
 # python -m pip install pywin32
 import pywintypes, win32file, win32con
 
+count = 0 # number of processed file
+
 # Parse the CLI parameters
 parser = argparse.ArgumentParser(description='Scan a directory.')
 
@@ -45,7 +47,7 @@ parser.add_argument('-a', '--action',
 
 
 def log(strg):
-    """ minimal log function
+    """ simple log function
     """
     if (args.verbose):
         print(strg)
@@ -56,7 +58,10 @@ def changeFileCreationTime(fname, newtime):
     fname: file path
     newtime: new creation time in epoch
     """
-    wintime = pywintypes.Time(newtime)
+    global count 
+    
+    count = count + 1
+    wintime = pywintypes.Time(newtime + count * 60)
     winfile = win32file.CreateFile(fname, win32con.GENERIC_WRITE,
                                    win32con.FILE_SHARE_READ | 
                                    win32con.FILE_SHARE_WRITE | 
@@ -68,48 +73,38 @@ def changeFileCreationTime(fname, newtime):
 
     win32file.SetFileTime(      winfile,  wintime,  wintime,     wintime)
     winfile.close()
+    # os.path.getctime returns a float, number of sec since Jan 1 1970
+    # as time.time()
+    log("\tcreated: %s" % time.ctime(os.path.getctime(fname)))
+
     
-def process_dir(direct):
+def process_dir(direct, newtime=0):
     """ process a directory
     """
     if (not os.path.isdir(direct)):
         log("\ndirectory " + direct +" not found")
         return
-
-    log("\ndirectory " + direct)
         
     # Loop across files in directory    
     for file in os.listdir(direct):
         fullpath = os.path.join(direct, file)
         
-        if (os.path.isdir(fullpath)):
-            # Directories
-            if (args.recursive):
-                process_dir(fullpath)
-            else:
-                break 
-        else:
-            # It is a regular file
-            
+        # if an extension is set and a regular file does not match, just skip it
+        if (not os.path.isdir(fullpath)): 
             # Does it match the extension ? For flexibility, just check for sub string
             if (args.extension and (not args.extension in fullpath)):
                 # log(fullpath + " is not matching " + str(args.extension))
                 break
-                
-            log("\n\twindows file " + fullpath )
-            # os.path.getctime returns a float, number of sec since Jan 1 1970
-            # as time.time()
-            if (args.date):
-                log("\tcreated: %s" % time.ctime(os.path.getctime(fullpath)))
-                
-                # TODO checks behavior for incorrect date formats
-                dt = datetime.strptime(args.date, '%b %d %Y')
-                t = time.mktime(dt.timetuple()) + dt.microsecond / 1E6
-                t = t + 10 * 3600 # default hour is 10 am
-                changeFileCreationTime(fullpath, t)
-                log("\tcreated: %s" % time.ctime(os.path.getctime(fullpath)))
-                
-    
+
+        log(fullpath )
+        
+        # https://stackoverflow.com/questions/35124404/changing-directory-create-times-ctime-using-python-in-windows
+        if (newtime and not os.path.isdir(fullpath)):
+            changeFileCreationTime(fullpath, newtime)                
+
+        if (os.path.isdir(fullpath) and args.recursive):
+            process_dir(fullpath, newtime)
+     
 if __name__ == '__main__':
 
     args = parser.parse_args()
@@ -120,8 +115,15 @@ if __name__ == '__main__':
         log ("parsing files and directories")
         log ("recursive=" + str(args.recursive))
         log ("extension=" + str(args.extension))
+
+        if (args.date):                
+            # TODO checks behavior for incorrect date formats
+            dt = datetime.strptime(args.date, '%b %d %Y')
+            t = time.mktime(dt.timetuple()) + dt.microsecond / 1E6
+            t = t + 10 * 3600 # default hour is 10 am
+        
         for d in args.dirs:
-            process_dir(d)
+            process_dir(d, t)
         
         log ("done")
 
