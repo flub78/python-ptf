@@ -12,16 +12,16 @@
 import unittest
 
 def setUpModule():
-    print "setupModule, restore database into initial state"
+    print ("setupModule, restore database into initial state")
 
 def tearDownModule():
-    print "Cleaning global mess"
+    print ("Cleaning global mess")
     
 class TestStringMethods(unittest.TestCase):
 
 
     def setUp(self):
-        print "Setup, preparing for testing"
+        print ("Setup, preparing for testing")
         
         
     def test_equal(self):
@@ -32,7 +32,7 @@ class TestStringMethods(unittest.TestCase):
         
         
     def tearDown(self):
-        print "tearDown, cleaning local mess"
+        print ("tearDown, cleaning local mess")
 
 if __name__ == '__main__':
     unittest.main()
